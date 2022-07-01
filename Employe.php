@@ -26,15 +26,29 @@ class Employe {
         return intval($dateDiff);
     }
 
-    public function getprime(){
-        $duree = $this->dureeEnEntreprise();
-        $primeBase = $this->salaire * 0.05;
+    public function getSalaire(){
+        return $this->salaire;
+    }
+    public function getService(){
+        return $this->service;
+    }
 
-        $primeAncien = ($this->salaire * 0.02) * $duree;
+    public function getPrime(){
+        $duree = $this->dureeEnEntreprise();
+        $primeBase = $this->salaire * 1000 * 0.05;
+
+        $primeAncien = ($this->salaire * 1000 * 0.02) * $duree;
 
         return $primeBase + $primeAncien;
     }
 
+    public function getNom(){
+        return $this->nom;
+    }
+
+    public function getNomPrenom(){
+        return $this->prenom;
+    }
 
     public function getNomComplet(){
         return $this->nom . " " . $this->prenom;
@@ -44,7 +58,7 @@ class Employe {
         $jourPrime = date("d/m");
         $jourPrime = "30/11";
         if ($jourPrime == "30/11") {
-            $transfert = $this->getNomComplet() . ", le transfert de votre prime s'élevant à " . $this->getprime() . " € " . "a été envoyé à la banque";
+            $transfert = $this->getNomComplet() . ", le transfert de votre prime s'élevant à " . $this->getPrime()  . " € " . "a été envoyé à la banque" . $this->getService();
             return $transfert;
         }
         return $transfert = "Pas de transfert";
