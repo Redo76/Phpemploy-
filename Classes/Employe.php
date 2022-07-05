@@ -92,7 +92,6 @@ class Employe {
     }
 
     public function chequesNoel(){
-        var_dump($this->enfants);
         if (empty($this->enfants) || !$this->verifCheques()) {
             return false;
         }
@@ -100,7 +99,6 @@ class Employe {
             $cheques = array();
 
             foreach ($this->enfants as $enfant) {
-                var_dump($enfant);
                 if ($enfant >= 0 && $enfant <= 10) {
                     array_push($cheques, 20);
                 }
@@ -115,7 +113,6 @@ class Employe {
                 }
             }
             
-            var_dump($cheques);
             return $cheques;
         }
     }

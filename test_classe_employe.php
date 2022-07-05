@@ -1,9 +1,13 @@
 <?php
+require_once("./Classes/Directeur.php");
 require_once("./classes/Employe.php");
 require_once("./Classes/Agence.php");
 
+
 $agence1 = new Agence("PremièreAgence", "AdresseAuPif", 77777, "villeAuPif","Restaurant d'entreprise");
 $agence2 = new Agence("DeuxièmeAgence", "AdresseAuPif", 12345, "villeAuPif","Tickets Restaurants");
+
+$directeur = new Directeur("Dufesne", "Chapin", "2017-09-30", "directeur", 28, "Directeur", $agence1, [28, 18, 24]);
 
 $employe1 = new Employe("Camacho", "Denise","2019-07-13","employé", 18, "Comptabilité", $agence1, [15,22,7]);
 $employe2 = new Employe("Oconnor", "Omari ","2022-01-01","employé", 10, "Technicien", $agence2, [10,17]);
@@ -14,6 +18,9 @@ $employe5 = new Employe("Knox", "Brook ","2019-12-23","employé", 13, "RH", $age
 $employes = array($employe1, $employe2, $employe3, $employe4, $employe5);
 
 $masseSalariale = 0;
+
+print $directeur->ordreTransfert();
+echo "<br><br>";
 
 foreach ($employes as $employe) {
     $masseSalariale += $employe->getprime() + $employe->getSalaire() * 1000;
@@ -30,15 +37,16 @@ foreach ($employes as $employe) {
     :
     print "Cette employé(e) n'a pas le droit aux chèques vacances";
 
-    echo "<br>";
+    echo "<br><br>";
 
     if ($employe->chequesNoel()) {
         foreach ($employe->chequesNoel() as $cheque) {
             if ($cheque == 0) {
                 $cheque = "Pas de cheque";
-            } 
-            print $cheque;
-            echo "<br>";
+            } else {
+                print "Votre enfant dispose d'un chèque de " . $cheque . " €";
+                echo "<br>";
+            }
         }
     }
     else{
